@@ -44,12 +44,12 @@ body{
 }
 
 .item1{
-background-color:00000;
+background-color: #998100;
   color:ffffff;
 margin-bottom:0%;
 position: fixed;
 width:100%;
-height:2%;
+height:3%;
 padding-top:0;
 }
 
@@ -60,26 +60,31 @@ color:#998100;
 font-family: calibri;
 font-size: 10px;
 text-align: right;
-margin-top: 20%;
-margin-left: 28%;
+margin-top: 15%;
+margin-left: 27%;
 padding: 10%;
+position: absolute;
 }
 
 .item3{
-  margin-left:65%;
+ margin-left:50%;
 color:ffffff;
 size: 2px;
 font-size: 2px;
 text-align:center;
+margin-top:35%;
+position:absolute;
 
 }
 
 .item4{
-  margin-right:50%;
+  margin-left:30%;
 color:ffffff;
 size: 2px;
 font-size: 2px;
 text-align:center;
+margin-top:35%;
+position: absolute;
 
 
 }
@@ -166,77 +171,48 @@ color: #ffffff;
 
 }
 
-.topnav {
-
-  overflow: hidden;
-  background-color: #000000;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #ffffff;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.active {
-  background-color: #998100;
-  color: white;
-}
-
-.topnav .icon {
-  display: none;
-}
-
-
-
-.topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #555;
-  color: white;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child), .dropdown .dropbtn {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
+/*---navigation--*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
     top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .topnav.responsive .dropdown {float: none;}
-  .topnav.responsive .dropdown-content {position: relative;}
-  .topnav.responsive .dropdown .dropbtn {
-    display: block;
-    width: 100%;
-    text-align: left;
-  }
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
 }
+
+.sidenav a {
+    padding: 18px 18px 18px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+/*---End Navigation--*/
+
 @media only screen and (max-width: 600px) and (min-width: 300px)  {
 
   .grid-container {
@@ -285,16 +261,15 @@ color: #ffffff;
 }
 </style>
 <script>
-function myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
-    }
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
 }
 
-</script>
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
 </head>
 <body>
   <div class="sticky-container">
@@ -323,14 +298,18 @@ function myFunction() {
 
 
   <div class="item1">
-<div class="topnav" id="myTopnav">
-  <a href="Index.html" class="active">Home</a>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="Index.html">Home</a>
   <a href="aboutme.html">About</a>
   <a href="Contact_me.html">Contact</a>
-  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
+
+<span style="margin-right: 90%; font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+</div>
+
 
-</div>
+
   <div class="item2"><div style ="text-align: left"><h1 style="color:black">Hello,</h1><br/><h2> My Name is Mapitso Moshoeshoe</h2><br/>
     <p style="color:black">I am passionate about building online solutions.</p></div></div>
 
@@ -340,7 +319,7 @@ function myFunction() {
 
     </div>
   <div class="item4">
-<a href="Contact_m.html" class="button">Contact Me</a>
+<a href="Contact_me.html" class="button">Contact Me</a>
 
 
 </div>

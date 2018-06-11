@@ -66,78 +66,49 @@ color: #ffffff;
    width: 100%;
     margin: 0 auto;
     text-align: center;
-}/*----- Navigation -----*/
-.topnav {
-
-  overflow: hidden;
-  background-color: #000000;
 }
 
-.topnav a {
-  float: left;
-  display: block;
-  color: #ffffff;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.active {
-  background-color: #998100;
-  color: white;
-}
-
-.topnav .icon {
-  display: none;
-}
-
-
-
-.topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #555;
-  color: white;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-/*--Media queries for navigation--*/
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child), .dropdown .dropbtn {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
+/*---navigation--*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
     top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .topnav.responsive .dropdown {float: none;}
-  .topnav.responsive .dropdown-content {position: relative;}
-  .topnav.responsive .dropdown .dropbtn {
-    display: block;
-    width: 100%;
-    text-align: left;
-  }
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
 }
+
+.sidenav a {
+    padding: 18px 18px 18px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+/*---End Navigation--*/
 /*---Responsive---*/
 @media only screen and (max-width: 600px)   {
 
@@ -227,14 +198,13 @@ margin: auto;
 }
 </style>
 <script>
-jQuery(document).ready(function() {
-jQuery('.toggle-nav').click(function(e) {
-jQuery(this).toggleClass('active');
-jQuery('.menu ul').toggleClass('active');
-e.preventDefault();
-});
-});
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
 
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
 </script>
 </head>
 <body>
@@ -267,15 +237,18 @@ e.preventDefault();
 
   <div class="item1">
 <!--Navigation-->
-    <div class="topnav" id="myTopnav">
-      <a href="Index.html" class="active">Home</a>
-      <a href="aboutme.html">About</a>
-      <a href="Contact_me.html">Contact</a>
-      <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-    </div>
-
-
+    <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="Index.html">Home</a>
+  <a href="aboutme.html">About</a>
+  <a href="Contact_me.html">Contact</a>
 </div>
+
+<span style="margin-right: 90%; font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+</div>
+
+
+
 <!---Header-->
   <div class="item2"><div style ="text-align: centre"><h1>  - My Journey - </h1></p></div></div>
 <!---Image-->
