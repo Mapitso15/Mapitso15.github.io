@@ -1,0 +1,82 @@
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link media="all" type="text/css" rel="stylesheet" href="game.css">
+
+
+</head>
+
+<body>
+
+
+<div class="wrapper">
+<div class="logo" id="logo"><img src="images/logo5.png"></div>
+    <!-- Navigation -->
+    <div class="topnav" id="myTopnav">
+  <a href="#" class="active">Home</a>
+  <a href="#">Game Overview</a>
+  <a href="#">Characters</a>
+  <a href="#">Storyline</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+    <!-- Top Container -->
+    <section class="top-container">
+      <header class="gamearea">
+        <canvas id="myCanvas" ></canvas>
+      </header>
+      <div class="top-box top-box-a">
+        <h4>Characters</h4>
+        <img src="images/char2.png">
+        <a href="" class="btn">View Characters</a>
+      </div>
+      <div class="top-box top-box-b">
+        <h4>Choose Storyline</h4>
+        <img src="images/st2.png">
+        <a href="" class="btn">Choose Story</a>
+      </div>
+    </section>
+
+    <!-- Boxes Section -->
+    <section class="boxes">
+      <div class="box">
+        <img src="images/square1.png">
+        <h3>Game Overview</h3>
+        <p>The land of dreams is strangely quiet. Today marks the fifth year after the Battle of Bailford Keep, when King Osric had been betrayed by his trusted ally Duke Caphis. A mysterious Necromancer called Ze'ev descended from  </p>
+        <a href="" class="btn">Read More</a>
+      </div>
+      <div class="box">
+         <img src="images/square1.png">
+        <h3>Game Review</h3>
+        <p>I meticulously chose to place in the top row of my inventory grid. I was one room away from the boss before being unceremoniously tossed face-down outside the dungeon entrance.</p>
+<a href="" class="btn">Read More</a>
+      </div>   
+
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer>
+      <p>Gaming Websites 2018</p>
+    </footer>
+
+  </div>
+  <!-- Wrapper Ends -->
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+</body>
+<html>
