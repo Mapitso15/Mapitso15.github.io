@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+*
+{
+margin: 0;
+padding:0;    
+    }
+html, body{
+margin:0;
+padding:0;
+height:100%;
+width:100%;
+background-color: white;
+}
+.intro{
+height:100%;
+width:100%;
+margin:auto;
+background: url(images/b1image.jpg) no-repeat 50% 50%;
+display:table;
+top:0;
+background-size:cover;
+}
+.intro .inner{
+display:table-cell;
+vertical-align:middle;
+width:100%;
+max-width:none;
+
+}
+
+.footer
+{
+   
+   max-width:100%;
+    height: 6%;
+    background-color: #aec9cf;
+    margin: 0 auto;
+    text-align: center;
+    color:White;
+    font-family:serif;
+    font-size: 18px;
+    }
+.section-title {
+text-align:center;
+margin-top: 0em;
+background-color: #aec9cf;
+padding: .5em 0;
+width:100%;
+}
+.content{
+max-width:500px;
+margin:0 auto;
+text-align:center;
+}
+.content h1{
+font-family:'Raleway', sans-serif;
+color:#F9F3F4;
+text-shadow: 0px 0px 300px #000;
+font-size:500%;
+}
+.btn{
+border-radius:9px;
+font-family: 'Oswald',sans-serif;
+color: red;
+font-size:135%;
+padding:10px 20px;
+border: solid #fff 3px;
+text-transform: uppercase;
+text-decoration:none;
+}
+.btn:hover{
+color:#fff;
+border: solid red 3px;
+}
+
+.myTable table{
+	position: relative;
+	margin:0;
+	margin-top:25.1%;
+
+}
+
+.myTable table tr td input{
+	height:43px;
+	border-radius: 10px;
+	border:2px solid #686868 ;
+	padding-left:120px;
+	font-size: 1.2em;
+
+}
+.myTable table tr td select{
+	border:2px solid #686868 ;
+	background-color:silver;
+	color:#484848 ;
+}
+
+.myTable table tr td p{
+	display: inline;
+	position: absolute;
+	margin:0;
+	background-color:silver;
+	padding: 1.8%;
+	width:15%;
+	text-align:center;
+	font-size:1.3em;
+	border-radius: 10px;
+	border:2px solid #686868 ;
+	color:#484848  ;
+}
+.myTable table tr td .amount{
+	top:3.2%;
+}
+.myTable table tr td .output{
+	top:52.3%;
+
+}
+.myTable table tr td select{
+	border-radius: 10px;
+	height:50px;
+}
+.myTable table tr td input:focus {
+	border: 2.1px solid dodgerBlue;
+
+}
+.myTable table tr td input:focus + p{
+	border: 2.1px solid dodgerBlue;
+	color: dodgerBlue;
+
+}
+.mobileTable{
+	visibility: hidden;
+}
+
+@media only screen and (max-width: 568px){
+.myTable{
+	visibility:hidden;
+}
+.mobileTable{
+	visibility:visible;
+	position:relative;
+	margin-left:10%;
+	margin-right:5%;
+}
+.mobileTable table tr td input{
+	height:80px;
+	border-radius: 10px;
+	border:2px solid #686868 ;
+	font-size: 2em;
+	padding-left:3%;
+}
+.mobileTable table tr td select{
+	border-radius: 10px;
+	height:90px;
+	width:98.5%;
+	margin-top:12%;
+	font-size: 2em;
+}
+.mobileTable table tr td p{
+	
+font-size: 2em;
+}
+
+
+
+}
+.table1 {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+   /*border: 1px solid #ddd;*/
+    font-size:170%;
+    margin: 0 50% 0 0;
+}
+
+.table1 td, th {
+    /*border: 1px solid #dddddd;*/
+    text-align: left;
+    padding: 8px;
+}
+
+.table1 tr:nth-child(even) {
+    background-color: #99cccc;
+}
+
+@media screen and (max-width:768px){
+
+.table1 
+{
+   width:100%;
+height: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 320px) {
+    .table1 
+{
+   width:100%;
+height: 100%;
+    }
+}

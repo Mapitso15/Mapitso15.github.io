@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<head>
+<title>Currency C Converter</title>
+<link rel="stylesheet" type="text/css" href="ccstyle.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<section class="intro">
+<div class="inner">
+<div class="content">
+<h1>Moola Currency Converter</h1>
+<p style ="color: white;">Use Moola currency converter to convert from one currency to another</p>
+<div class = "myTable" align="center">
+    <table>
+
+<tr>
+
+  <td><input id="fromAmount" size="20" type="text" value="1" onkeyup="convertCurrency();">
+  <p class="amount">Amount</p>
+  </td>
+  <td><select id="from" onchange="convertCurrency();">
+  <option value="AUD">Austrialian Dollar (AUD)</option>
+  <option value="BGN">Bulgarian Lev (BGN)</option>
+  <option value="CAD">Canadian Dollar (CAD)</option>
+  <option value="CHF">Swiss Franc (CHF)</option>
+  <option value="DKK">Danish Krone (DKK)</option>
+  <option value="GBP">Pound Sterling (GBP)</option>
+  <option value="ILS" selected>Israeli New Shekel (ILS)</option>
+  <option value="AUD">Austrialian Dollar (AUD)</option>
+  <option value="INR">Indian Rupee (INR)</option>
+  <option value="ZAR">South African Rand (ZAR)</option>
+  <option value="KES">Kenyan Shilling (KES)</option>
+  <option value="EEK">Estonian Kroon (EEK)</option>
+  <option value="DZD">Algerian Dinar (DZD)</option>
+  <option value="MKD">Macedonian Denar (MKD)</option>
+  <option value="PKR">Pakistani Rupee (PKR)</option>
+  <option value="QAR">Qatari Rial (QAR)</option>
+  <option value="USD">United States Dollar (USD)</option>
+  <option value="UYU">Uruguayan Peso (UYU)</option>
+  <option value="VND">Vietnamese Dong (VND)</option>
+
+  </select>
+</td>
+</tr>
+
+
+<tr>
+<td><input id="toAmount"size="20" height="50px" placeholder="0,00" disabled type="text"/>
+<p class="output">Output</p>
+</td>
+  <td><select id="to" onchange="convertCurrency();">
+<option value="AUD">Austrialian Dollar (AUD)</option>
+<option value="BGN">Bulgarian Lev (BGN)</option>
+<option value="CAD">Canadian Dollar (CAD)</option>
+<option value="CHF">Swiss Franc (CHF)</option>
+<option value="DKK">Danish Krone (DKK)</option>
+<option value="GBP">Pound Sterling (GBP)</option>
+<option value="ILS">Israeli New Shekel (ILS)</option>
+<option value="AUD" >Austrialian Dollar (AUD)</option>
+<option value="INR">Indian Rupee (INR)</option>
+<option value="ZAR">South African Rand (ZAR)</option>
+<option value="KES">Kenyan Shilling (KES)</option>
+<option value="EEK">Estonian Kroon (EEK)</option>
+<option value="DZD">Algerian Dinar (DZD)</option>
+<option value="MKD">Macedonian Denar (MKD)</option>
+<option value="PKR">Pakistani Rupee (PKR)</option>
+<option value="QAR" selected>Qatari Rial (QAR)</option>
+<option value="USD">United States Dollar (USD)</option>
+<option value="UYU">Uruguayan Peso (UYU)</option>
+<option value="VND">Vietnamese Dong (VND)</option>
+</select>
+
+</td>
+
+</tr>
+</td>
+</tr>
+
+    </table>
+	</div>
+	
+	<div class="mobileTable">
+		<table>
+			<tr>
+				<td>
+				<p class="amount">Amount</p>
+				<input id="fromAmount" size="24" type="text" value="1" onkeyup="convertCurrency();">
+				<select id="from" onchange="convertCurrency();">
+				<option value="AUD">Austrialian Dollar (AUD)</option>
+				<option value="BGN">Bulgarian Lev (BGN)</option>
+				<option value="CAD">Canadian Dollar (CAD)</option>
+				<option value="CHF">Swiss Franc (CHF)</option>
+				<option value="DKK">Danish Krone (DKK)</option>
+				<option value="GBP">Pound Sterling (GBP)</option>
+				<option value="ILS" selected>Israeli New Shekel (ILS)</option>
+				<option value="AUD">Austrialian Dollar (AUD)</option>
+				<option value="INR">Indian Rupee (INR)</option>
+				<option value="ZAR">South African Rand (ZAR)</option>
+				<option value="KES">Kenyan Shilling (KES)</option>
+				<option value="EEK">Estonian Kroon (EEK)</option>
+				<option value="DZD">Algerian Dinar (DZD)</option>
+				<option value="MKD">Macedonian Denar (MKD)</option>
+				<option value="PKR">Pakistani Rupee (PKR)</option>
+				<option value="QAR">Qatari Rial (QAR)</option>
+				<option value="USD">United States Dollar (USD)</option>
+				<option value="UYU">Uruguayan Peso (UYU)</option>
+				<option value="VND">Vietnamese Dong (VND)</option>
+				</select>
+				<select id="mto" onchange="convertCurrency();">
+				<option value="AUD">Austrialian Dollar (AUD)</option>
+				<option value="BGN">Bulgarian Lev (BGN)</option>
+				<option value="CAD">Canadian Dollar (CAD)</option>
+				<option value="CHF">Swiss Franc (CHF)</option>
+				<option value="DKK">Danish Krone (DKK)</option>
+				<option value="GBP">Pound Sterling (GBP)</option>
+				<option value="ILS">Israeli New Shekel (ILS)</option>
+				<option value="AUD" >Austrialian Dollar (AUD)</option>
+				<option value="INR">Indian Rupee (INR)</option>
+				<option value="ZAR">South African Rand (ZAR)</option>
+				<option value="KES">Kenyan Shilling (KES)</option>
+				<option value="EEK">Estonian Kroon (EEK)</option>
+				<option value="DZD">Algerian Dinar (DZD)</option>
+				<option value="MKD">Macedonian Denar (MKD)</option>
+				<option value="PKR">Pakistani Rupee (PKR)</option>
+				<option value="QAR" selected>Qatari Rial (QAR)</option>
+				<option value="USD">United States Dollar (USD)</option>
+				<option value="UYU">Uruguayan Peso (UYU)</option>
+				<option value="VND">Vietnamese Dong (VND)</option>
+				</select>
+				<p class="output">Output</p>
+				<input class="mOutput" id="toAmount"size="24" height="50px" placeholder="0,00" disabled type="text"/>
+
+				</td>
+				
+				
+				
+				
+			</tr>
+		
+		</table>
+	</div>
+
+</div>
+</div>
+</section>
+<body>
+<div class="container-fluid">
+<h2 class ="section-title"><strong>Currency List</strong></h2>
+<table class = "table1">
+  <tr>
+    <th>Flag</th>
+    <th>Country</th>
+    <th>Curriencies</th>
+  </tr>
+  <tr>
+    <td><img src="flags/au.png" style="width:70px;height:50px;"></td>
+    <td>Australia</td>
+    <td>Austrialian Dollar (AUD)</td>
+  </tr>
+  <tr>
+    <td><img src="flags/bg.png" style="width:70px;height:50px;"></td>
+    <td>Bulgaria</td>
+    <td>Bulgarian Lev (BGN)</td>
+  </tr>
+  <tr>
+    <td><img src="flags/ca.png" style="width:70px;height:50px;"></td>
+    <td>Canda</td>
+    <td>Canadian Dollar (CAD)</td>
+  </tr>
+  <tr>
+    <td><img src="flags/sw.png" style="width:70px;height:50px;"></td>
+    <td>Switzerland</td>
+    <td>Swiss Franc (CHF)</td>
+  </tr>
+  <tr>
+    <td><img src="flags/dn.png" style="width:70px;height:50px;"></td>
+    <td>Denmark</td>
+    <td>Danish Krone (DKK)</td>
+  </tr>
+  <tr>
+    <td><img src="flags/unk.png" style="width:70px;height:50px;"></td>
+    <td>United Kingdom</td>
+    <td>Pound Sterling (GBP)</td>
+  </tr>
+<tr>
+    <td><img src="flags/is.png" style="width:70px;height:50px;"></td>
+    <td>Israel</td>
+    <td>Israeli New Shekel (ILS)</td>
+  </tr>
+<tr>
+    <td><img src="flags/in.png" style="width:70px;height:50px;"></td>
+    <td>Republic of India</td>
+    <td>Indian Rupee (INR)</td>
+  </tr>
+<tr>
+    <td><img src="flags/sa.png" style="width:70px;height:50px;"></td>
+    <td>Republic of South Africa</td>
+    <td>South African Rand (ZAR)</td>
+  </tr>
+<tr>
+    <td><img src="flags/ky.png" style="width:70px;height:50px;"></td>
+    <td>Republic of Kenya</td>
+    <td>Kenyan Shilling (KES)</td>
+  </tr>
+<tr>
+    <td><img src="flags/es.png" style="width:70px;height:50px;"></td>
+    <td>Republic of Estonia</td>
+    <td>Estonian Kroon (EEK)</td>
+  </tr>
+<tr>
+   <td><img src="flags/alg.png" style="width:70px;height:50px;"></td>
+    <td>People's Democratic Republic of Algeria</td>
+    <td>Algerian Dinar (DZD)</td>
+  </tr>
+<tr>
+    <td><img src="flags/mac.png" style="width:70px;height:50px;"></td>
+    <td>Republic of Macedonia</td>
+    <td>Macedonian Denar (MKD)</td>
+  </tr>
+<tr>
+    <td><img src="flags/pkr.png" style="width:70px;height:50px;"></td>
+    <td>Islamic Republic of Pakistan</td>
+    <td>Pakistani Rupee (PKR)</td>
+  </tr>
+<tr>
+   <td><img src="flags/qt.png" style="width:70px;height:50px;"></td>
+    <td>State of Qatar</td>
+    <td>Qatari Rial (QAR)</td>
+  </tr>
+<tr>
+    <td><img src="flags/usd.png" style="width:70px;height:50px;"></td>
+    <td>United States of America</td>
+    <td>United States Dollar (USD)</td>
+  </tr>
+<tr>
+    <td><img src="flags/uyu.png" style="width:70px;height:50px;"></td>
+    <td>Oriental Republic of Uruguay</td>
+    <td>Uruguayan Peso (UYU)</td>
+  </tr>
+<tr>
+    <td><img src="flags/vt.png" style="width:70px;height:50px;"></td>
+    <td>Socialist Republic of Vietnam</td>
+    <td>Vietnamese Dong (VND)</td>
+  </tr>
+</table>
+
+</div>
+<div class="footer"><p>@Moola Currency Converter 2018</p>
+</div>
+
+</body>
+</html>
