@@ -6,7 +6,7 @@ class StartScreen extends Phaser.Scene {
   }
   preload() {
     console.log("Start screen");
-this.load.image ('ocean', 'assets/ocean2.png');
+this.load.image ('ocean', 'assets/under3.png');
   }
   create() {
     //background image

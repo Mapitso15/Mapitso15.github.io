@@ -34,7 +34,6 @@ var ruby;
 var collectStar;
 
 
-//var scoreText.fixedToCamera = true;
 
 function preload()
 {
@@ -52,7 +51,7 @@ function preload()
  this.load.image('float', 'assets/float.png');
  this.load.image('reefrock', 'assets/reefrock.png');
  this.load.image('ship2', 'assets/shipwreck2.png');
- 
+
 
  //this.load.image('fish', 'assets/shark1.png', { frameWidth: 200, frameHeight: 80 });
 }
@@ -64,9 +63,6 @@ function create()
 this.add.sprite(0,0, 'ocean').setOrigin(0,0);
 
 
-
-
-
 //Player
 
 player = this.physics.add.sprite(100, 700, 'player');
@@ -76,14 +72,15 @@ player.setCollideWorldBounds(true);
 
  cursors = this.input.keyboard.createCursorKeys();
 
-//  Set the camera and physics bounds to be the size of 4x4 bg images
+//  Setting the camera and physics bounds
     this.cameras.main.setBounds(0, 0, 2400 , 600);
     this.physics.world.setBounds(0, 0, 2400 , 600);
 
-    
+//camera setting for Player
 
-this.cameras.main.startFollow(player);
+    this.cameras.main.startFollow(player);
 
+//group for enemies
 
  this.physics.world.gravity.y = 60;
 
@@ -109,14 +106,12 @@ this.cameras.main.startFollow(player);
     });
 
 
+//creating groups for enemies
 
-
-
-
-    group.create(200, 300, 'enemy2').setVelocityX(280);
+  group.create(200, 300, 'enemy2').setVelocityX(280);
     //group.create(350, 300).setGravity(0, 120);
   group.create(1300, 300, 'enemy2').setGravity(0, -120);
-   group.create(1500, 300, 'enemy2').setGravity(0, -180);
+  group.create(1500, 300, 'enemy2').setGravity(0, -180);
   group.create(550, 300, 'enemy1').setGravity(0, -120);
   group.create(800, 300, 'enemy1').body.allowGravity = true;
   group.create(1700, 300, 'enemy1').setVelocityX(280);
@@ -124,7 +119,7 @@ this.cameras.main.startFollow(player);
  group.create(2100, 500, 'fish').setGravity(20, -180);
 
 
-    //ruby
+    //Adding rubies to the game
     ruby = this.physics.add.group({
         key: 'ruby',
         repeat: 80,
@@ -155,51 +150,58 @@ platforms.create(1000, 580, 'rock2');
 platforms.create(2200, 508, 'obstacle1');
 platforms.create(1800, 230, 'rock1');
 platforms.create(1500, 550, 'rock2');
-//collectRuby
 
 
 
-// Shark zone
+
+//collison between player and group
 function collectRuby1 (player, group)
 {
     group.disableBody(true, true);
 	 player.setTint(0xff0000);
 this.physics.pause();
-   
-	
-	//this.add.text(900, 0, 'Score: ' + score).setFont('32px Arial Black').setFill('#ffffff');
+
+
 	 //gameText = this.add.text(16, 16, 'GAME OVER',{fontSize:'80', fill:'#fffff'});
 	 gameText = this.add.text(150, 300, 'GAME OVER', { fontSize: '38px', fill: '#FF0000', backgroundColor: '#000000' });
+   gameText = this.add.text(140, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#ffffff' });
    gameText = this.add.text(550, 300, 'GAME OVER', { fontSize: '38px', fill: '#FF0000', backgroundColor: '#ffffff' });
+    gameText = this.add.text(540, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#00000' });
    gameText = this.add.text(1000, 300, 'GAME OVER', { fontSize: '38px', fill: '#FF0000', backgroundColor: '#000000'});
+    gameText = this.add.text(990, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#ffffff' });
    gameText = this.add.text(1600, 300, 'GAME OVER', { fontSize: '38px', fill: '#FF0000', backgroundColor: '#ffffff' });
+    gameText = this.add.text(1590, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#000000' });
    gameText = this.add.text(2100, 300, 'GAME OVER', { fontSize: '38px', fill: '#FF0000',backgroundColor: '#00000' });
+    gameText = this.add.text(2090, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#ffffff' });
 
 
 
 
-   
+
 }
  //scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
 scoreText = this.add.text(1300, 16, 'Score:' + score, { fontSize: '32px', fill: '#ffffff' });
 scoreText.fixedToCamera = true;
 
+//collect rubies
 function collectRuby (player, ruby)
 {
     ruby.disableBody(true, true);
 
      score += 5;
- 
+
     scoreText.setText('Score: '+score);
-	 
+
 
 	 //this.add.text(800, 16, 'Score:'+ score, { fontSize: '32px', fill: '#ffffff' });
 
    if (score === 120)
    {
       gameText = this.add.text(1800, 300, ' Mission Complete!', { fontSize: '35px', fill: '#F00000', backgroundColor: '#ffffff' });
-	  gameText = this.add.text(1000, 300, ' Mission Complete!', { fontSize: '35px', fill: '#F00000', backgroundColor: '#000000' });
+      gameText = this.add.text(1760, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#ffffff' });
+	    gameText = this.add.text(2070, 300, ' Mission Complete!', { fontSize: '35px', fill: '#F00000', backgroundColor: '#000000' });
+      gameText = this.add.text(2090, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#ffffff' });
       this.physics.pause();
    }
 
@@ -241,7 +243,3 @@ function update ()
 
 
     }
-
-
-
-
