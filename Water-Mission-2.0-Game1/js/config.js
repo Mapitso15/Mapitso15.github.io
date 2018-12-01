@@ -11,7 +11,7 @@ var config = {
             setBounds: false
         }
     },
-    scene: [startscreen, Level1]
+    scene: [StartScreen, Level1]
 };
 
 

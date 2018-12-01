@@ -6,17 +6,35 @@ class StartScreen extends Phaser.Scene {
   }
   preload() {
     console.log("Start screen");
-this.load.image ('ocean', 'assets/under3.png');
+this.load.image ('back', 'assets/scuba-water.jpg');
+this.load.image('button', 'assets/button1.png');
+this.load.image('ruby', 'assets/ruby.png');
+
   }
   create() {
-    //background image
-   this.add.sprite(0,0, 'ocean').setOrigin(0,0);
-    var testText = this.add.text(100,100,'Click to start the game.',{
+	
+	 //background image
+   this.add.sprite(0,0, 'back').setOrigin(0,0);
+   gameText = this.add.text(170, 70, 'Water Mission 2.0', { fontSize: '45px', fill: '#ffffff'});  
+     gameText = this.add.text(175, 175, 'Collect 20 rubies to complete mission', { fontSize: '20px', fill: '#ffffff'});  
+	this.add.sprite(150,180, 'ruby');
+   //click to start 
+   /* var testText = this.add.text(120,380,'Click to start the game.',{
       fontSize: '32px',
       fill: '#FFF'
     });
     testText.setInteractive()
     testText.on('pointerdown',startGameplay)
+	*/
+	//button
+	  var bg = this.add.image(200, 150, 'button');
+	  
+        var container = this.add.container(220, 160, [ bg]);
+
+        bg.setInteractive()
+		bg.on('pointerdown',startGameplay)
+
+    
 
   }
   update() {

@@ -1,24 +1,3 @@
-var config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: {y: 500},
-            debug: false,
-            setBounds: false
-        }
-    },
-    scene: {
-        key: 'main',
-        preload: preload,
-        create: create,
-        update: update
-    }
-};
-
-var game = new Phaser.Game(config);
 
 var map;
 var player;
@@ -33,9 +12,12 @@ var rubyLayer;
 var ruby;
 var collectStar;
 
+class Level1 extends Phaser.Scene {
+	constructor() {
+		super ({key:"Level1"});
+	}
 
-
-function preload()
+preload()
 {
  this.load.image ('ocean', 'assets/under3.png');
  this.load.image('player', 'assets/scubac1.png');
@@ -56,7 +38,7 @@ function preload()
  //this.load.image('fish', 'assets/shark1.png', { frameWidth: 200, frameHeight: 80 });
 }
 
-function create()
+create()
 {
 
  //background image
@@ -215,7 +197,7 @@ function collectRuby (player, ruby)
 
 
 
-function update ()
+update ()
 {
     player.setVelocity(10);
 
@@ -243,3 +225,4 @@ function update ()
 
 
     }
+}	
