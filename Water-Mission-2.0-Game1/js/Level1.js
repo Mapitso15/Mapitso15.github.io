@@ -11,6 +11,10 @@ var groundLayer;
 var rubyLayer;
 var ruby;
 var collectStar;
+//score test
+var highscore;
+var scoreDisplay;
+var highScoreText;
 
 class Level1 extends Phaser.Scene {
 	constructor() {
@@ -55,8 +59,8 @@ player.setCollideWorldBounds(true);
  cursors = this.input.keyboard.createCursorKeys();
 
 //  Setting the camera and physics bounds
-    this.cameras.main.setBounds(0, 0, 2400 , 600);
-    this.physics.world.setBounds(0, 0, 2400 , 600);
+    this.cameras.main.setBounds(0, 0, 2400 , 650);
+    this.physics.world.setBounds(0, 0, 2400 , 650);
 
 //camera setting for Player
 
@@ -91,7 +95,7 @@ player.setCollideWorldBounds(true);
 //creating groups for enemies
 
   group.create(200, 300, 'enemy2').setVelocityX(280);
-    //group.create(350, 300).setGravity(0, 120);
+  //group.create(350, 300, 'enemy1').setGravity(0, 120);
   group.create(1300, 300, 'enemy2').setGravity(0, -120);
   group.create(1500, 300, 'enemy2').setGravity(0, -180);
   group.create(550, 300, 'enemy1').setGravity(0, -120);
@@ -124,14 +128,14 @@ this.physics.add.overlap(player, ruby, collectRuby, null, this);
 this.physics.add.overlap(player, group, collectRuby1, null, this);
 
 
-platforms.create(350, 538, 'ground');
+platforms.create(350, 588, 'ground');
 platforms.create(1300, 280, 'ground');
 platforms.create(720, 270, 'rock1');
 platforms.create(100, 170, 'rock2');
-platforms.create(1000, 580, 'rock2');
+platforms.create(1000, 600, 'rock2');
 platforms.create(2200, 508, 'obstacle1');
 platforms.create(1800, 230, 'rock1');
-platforms.create(1500, 550, 'rock2');
+platforms.create(1500, 580, 'rock2');
 
 
 
@@ -174,6 +178,7 @@ function collectRuby (player, ruby)
      score += 5;
 
     scoreText.setText('Score: '+score);
+ 
 
 
 	 //this.add.text(800, 16, 'Score:'+ score, { fontSize: '32px', fill: '#ffffff' });
@@ -190,7 +195,9 @@ function collectRuby (player, ruby)
     //scoreText.setText('Score: ' + score);
 }
 
-
+highScoreText = this.add.text(350, 20,
+		'High Score: ' + highscore,
+		{ font: "bold 30px Lato", fill: "#FFFFFF", align: "center" });
 
 }
 
@@ -222,7 +229,11 @@ update ()
     {
         player.setVelocityY(500);
     }
-
+    highScoreText.text = 'High Score: ' + localStorage.getItem("flappyhighscore"); {
+        if (score > localStorage.getItem("flappyhighscore")) { 
+            localStorage.setItem("flappyhighscore", score);
+        }
+    }
 
     }
 }	
