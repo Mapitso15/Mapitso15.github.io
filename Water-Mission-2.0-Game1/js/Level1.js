@@ -23,86 +23,85 @@ class Level1 extends Phaser.Scene {
 
 preload()
 {
- this.load.image ('ocean', 'assets/under3.png');
- this.load.image('player', 'assets/scubac1.png');
- this.load.image('ground', 'assets/coral.png');
- this.load.image('obstacle1', 'assets/shipwreck1.png' );
- this.load.image('enemy1', 'assets/octup1.png');
- this.load.image('enemy2', 'assets/seahorse1.png');
- this.load.image('ruby', 'assets/ruby.png');
- this.load.image('fish', 'assets/shark12.png');
- this.load.image('ruby', 'assets/yellowdiamond1.png');
- this.load.image('rock1', 'assets/rocklayer1.png');
- this.load.image('rock2', 'assets/rocklayer2.png');
- this.load.image('float', 'assets/float.png');
- this.load.image('reefrock', 'assets/reefrock.png');
- this.load.image('ship2', 'assets/shipwreck2.png');
+	 this.load.image ('ocean', 'assets/under3.png');
+	 this.load.image('player', 'assets/scubac1.png');
+	 this.load.image('ground', 'assets/coral.png');
+	 this.load.image('obstacle1', 'assets/shipwreck1.png' );
+	 this.load.image('enemy1', 'assets/octup1.png');
+	 this.load.image('enemy2', 'assets/seahorse1.png');
+	 this.load.image('ruby', 'assets/ruby.png');
+	 this.load.image('fish', 'assets/shark12.png');
+	 this.load.image('ruby', 'assets/yellowdiamond1.png');
+	 this.load.image('rock1', 'assets/rocklayer1.png');
+	 this.load.image('rock2', 'assets/rocklayer2.png');
+	 this.load.image('float', 'assets/float.png');
+	 this.load.image('reefrock', 'assets/reefrock.png');
+	 this.load.image('ship2', 'assets/shipwreck2.png');
+	 this.load.image('playbutton', 'assets/playagain.png');
 
-
- //this.load.image('fish', 'assets/shark1.png', { frameWidth: 200, frameHeight: 80 });
-}
+	}
 
 create()
-{
+	{
 
- //background image
-this.add.sprite(0,0, 'ocean').setOrigin(0,0);
-
-
-//Player
-
-player = this.physics.add.sprite(100, 700, 'player');
-
-player.setCollideWorldBounds(true);
+	 //background image
+	this.add.sprite(0,0, 'ocean').setOrigin(0,0);
 
 
- cursors = this.input.keyboard.createCursorKeys();
+	//Player
 
-//  Setting the camera and physics bounds
-    this.cameras.main.setBounds(0, 0, 2400 , 650);
-    this.physics.world.setBounds(0, 0, 2400 , 650);
+	player = this.physics.add.sprite(100, 700, 'player');
 
-//camera setting for Player
+	player.setCollideWorldBounds(true);
 
-    this.cameras.main.startFollow(player);
 
-//group for enemies
+	 cursors = this.input.keyboard.createCursorKeys();
 
- this.physics.world.gravity.y = 60;
+	//  Setting the camera and physics bounds
+		this.cameras.main.setBounds(0, 0, 2400 , 650);
+		this.physics.world.setBounds(0, 0, 2400 , 650);
 
-    var group = this.physics.add.group({
-        defaultKey: 'enemy1',
-        bounceX: 1,
-        bounceY: 1,
-        collideWorldBounds: true
-    });
+	//camera setting for Player
+
+		this.cameras.main.startFollow(player);
+
+	//group for enemies
+
+	this.physics.world.gravity.y = 60;
 
     var group = this.physics.add.group({
-        defaultKey: 'enemy2',
-        bounceX: 1,
-        bounceY: 1,
-        collideWorldBounds: true
-    });
+			defaultKey: 'enemy1',
+			bounceX: 1,
+			bounceY: 1,
+			collideWorldBounds: true
+		});
 
     var group = this.physics.add.group({
-        defaultKey: 'fish',
-        bounceX: 1,
-        bounceY: 1,
-        collideWorldBounds: true
-    });
+			defaultKey: 'enemy2',
+			bounceX: 1,
+			bounceY: 1,
+			collideWorldBounds: true
+		});
+
+    var group = this.physics.add.group({
+			defaultKey: 'fish',
+			bounceX: 1,
+			bounceY: 1,
+			collideWorldBounds: true
+		});
 
 
-//creating groups for enemies
+	//creating groups for enemies
 
-  group.create(200, 300, 'enemy2').setVelocityX(280);
-  //group.create(350, 300, 'enemy1').setGravity(0, 120);
-  group.create(1300, 300, 'enemy2').setGravity(0, -120);
-  group.create(1500, 300, 'enemy2').setGravity(0, -180);
-  group.create(550, 300, 'enemy1').setGravity(0, -120);
-  group.create(800, 300, 'enemy1').body.allowGravity = true;
-  group.create(1700, 300, 'enemy1').setVelocityX(280);
-  group.create(1200, 300, 'enemy1').body.allowGravity = true;
- group.create(2100, 500, 'fish').setGravity(20, -180);
+	  group.create(200, 300, 'enemy2').setVelocityX(280);
+	  //group.create(350, 300, 'enemy1').setGravity(0, 120);
+	  group.create(1300, 300, 'enemy2').setGravity(0, -120);
+	  group.create(1500, 300, 'enemy2').setGravity(0, -180);
+	  group.create(550, 300, 'enemy1').setGravity(0, -120);
+	  group.create(800, 300, 'enemy1').body.allowGravity = true;
+	  group.create(1700, 300, 'enemy1').setVelocityX(280);
+	  group.create(1200, 300, 'enemy1').body.allowGravity = true;
+	 group.create(2100, 500, 'fish').setGravity(20, -180);
 
 
     //Adding rubies to the game
@@ -120,58 +119,66 @@ player.setCollideWorldBounds(true);
 
 
     //platform for rubies
-platforms = this.physics.add.staticGroup();
-this.physics.add.collider(ruby, platforms);
-this.physics.add.collider(player, platforms);
-//this.physics.add.overlap(player, fish, null, this);
-this.physics.add.overlap(player, ruby, collectRuby, null, this);
-this.physics.add.overlap(player, group, collectRuby1, null, this);
+	platforms = this.physics.add.staticGroup();
+	this.physics.add.collider(ruby, platforms);
+	this.physics.add.collider(player, platforms);
+	//this.physics.add.overlap(player, fish, null, this);
+	this.physics.add.overlap(player, ruby, collectRuby, null, this);
+	this.physics.add.overlap(player, group, collectRuby1, null, this);
+
+	//Adding objects that act as platforms
+		platforms.create(350, 588, 'ground');
+		platforms.create(1300, 280, 'ground');
+		platforms.create(720, 270, 'rock1');
+		platforms.create(100, 170, 'rock2');
+		platforms.create(1000, 600, 'rock2');
+		platforms.create(2200, 508, 'obstacle1');
+		platforms.create(1800, 230, 'rock1');
+		platforms.create(1500, 580, 'rock2');
 
 
-platforms.create(350, 588, 'ground');
-platforms.create(1300, 280, 'ground');
-platforms.create(720, 270, 'rock1');
-platforms.create(100, 170, 'rock2');
-platforms.create(1000, 600, 'rock2');
-platforms.create(2200, 508, 'obstacle1');
-platforms.create(1800, 230, 'rock1');
-platforms.create(1500, 580, 'rock2');
+  
+    
 
 
 
-
-//collison between player and group
+//collison between player and enemies
 function collectRuby1 (player, group)
 {
     group.disableBody(true, true);
 	 player.setTint(0xff0000);
-this.physics.pause();
+		this.physics.pause();
 
-
+scoreText.setText('Score: '+score);
+ 
 	 //gameText = this.add.text(16, 16, 'GAME OVER',{fontSize:'80', fill:'#fffff'});
-	 gameText = this.add.text(150, 300, 'GAME OVER', { fontSize: '38px', fill: '#FF0000', backgroundColor: '#000000' });
-   gameText = this.add.text(140, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#ffffff' });
-   gameText = this.add.text(550, 300, 'GAME OVER', { fontSize: '38px', fill: '#FF0000', backgroundColor: '#ffffff' });
-    gameText = this.add.text(540, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#00000' });
-   gameText = this.add.text(1000, 300, 'GAME OVER', { fontSize: '38px', fill: '#FF0000', backgroundColor: '#000000'});
-    gameText = this.add.text(990, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#ffffff' });
-   gameText = this.add.text(1600, 300, 'GAME OVER', { fontSize: '38px', fill: '#FF0000', backgroundColor: '#ffffff' });
-    gameText = this.add.text(1590, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#000000' });
-   gameText = this.add.text(2100, 300, 'GAME OVER', { fontSize: '38px', fill: '#FF0000',backgroundColor: '#00000' });
-    gameText = this.add.text(2090, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#ffffff' });
+	 gameText = this.add.text(100, 150, 'GAME OVER', { fontSize: '100px', fill: '#FF0000', backgroundColor: '#000000' });
+	 var bg = this.add.image(150, 200, 'playbutton');
+	 gameOver = true;
+    var container = this.add.container(250, 160, [ bg]);
 
-
-
-
+        bg.setInteractive()
+		bg.on('pointerdown',startGameplay)
+      bg.setScrollFactor(0);
+	  
+	 function startGameplay() {
+	game.scene.stop('Level1'); 
+    game.scene.start('startscreen');
+	score.destroy();
+   
+}
+ 
+   gameText.setScrollFactor(0);
 
 }
- //scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
-scoreText = this.add.text(1300, 16, 'Score:' + score, { fontSize: '32px', fill: '#ffffff' });
-scoreText.fixedToCamera = true;
 
-//collect rubies
-function collectRuby (player, ruby)
+		//Score
+	scoreText = this.add.text(70, 16, 'Score:' + score, { fontSize: '22px', fill: '#ffffff' });
+	scoreText.fixedToCamera = true;
+	scoreText.setScrollFactor(0);
+	//collect rubies
+	function collectRuby (player, ruby)
 {
     ruby.disableBody(true, true);
 
@@ -180,25 +187,39 @@ function collectRuby (player, ruby)
     scoreText.setText('Score: '+score);
  
 
-
 	 //this.add.text(800, 16, 'Score:'+ score, { fontSize: '32px', fill: '#ffffff' });
 
-   if (score === 100)
+   if (score === 125)
    {
-      gameText = this.add.text(1800, 300, ' Mission Complete!', { fontSize: '35px', fill: '#F00000', backgroundColor: '#ffffff' });
-      gameText = this.add.text(1760, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#ffffff' });
-	    gameText = this.add.text(2070, 300, ' Mission Complete!', { fontSize: '35px', fill: '#F00000', backgroundColor: '#000000' });
-      gameText = this.add.text(2090, 345, 'Refresh to Play Again', { fontSize: '18px', fill: '#FF0000', backgroundColor: '#ffffff' });
-      this.physics.pause();
-   }
+      gameText = this.add.text(150, 150, 'Mission Complete!', { fontSize: '55px', fill: '#F00000', backgroundColor: '#ffffff' });
+    
+	 this.physics.pause();
+	   		restartLevel();
 
+	   
+	 gameText.setScrollFactor(0);
+	 var bg = this.add.image(200, 145, 'playbutton');
+	  var container = this.add.container(200, 145, [ bg]);
+       bg.setInteractive()
+          bg.on('pointerdown',startGameplay)
+            bg.setScrollFactor(0);
+	 
+	
+   }
+   
+ 
+ function startGameplay() {
+	game.scene.restart('Level1'); 
+	 game.scene.start('startscreen');
+
+	 }
     //scoreText.setText('Score: ' + score);
 }
-
-highScoreText = this.add.text(350, 20,
-		'High Score: ' + highscore,
-		{ font: "bold 30px Lato", fill: "#FFFFFF", align: "center" });
-
+//high score text
+	highScoreText = this.add.text(70, 40,
+			'High Score: ' + highscore,
+			{ font: "bold 20px Lato", fill: "#FFFFFF", align: "center" });
+	highScoreText.setScrollFactor(0);
 }
 
 
@@ -229,9 +250,9 @@ update ()
     {
         player.setVelocityY(500);
     }
-    highScoreText.text = 'High Score: ' + localStorage.getItem("flappyhighscore"); {
-        if (score > localStorage.getItem("flappyhighscore")) { 
-            localStorage.setItem("flappyhighscore", score);
+    highScoreText.text = 'High Score: ' + localStorage.getItem("highscore"); {
+        if (score > localStorage.getItem("highscore")) { 
+            localStorage.setItem("highscore", score);
         }
     }
 
