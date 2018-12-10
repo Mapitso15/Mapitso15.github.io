@@ -24,7 +24,7 @@ class Level1 extends Phaser.Scene {
 preload()
 {
 	 this.load.image ('ocean', 'assets/under3.png');
-	 this.load.image('player', 'assets/scubac1.png');
+	 this.load.image('player', 'assets/scubac11.png');
 	 this.load.image('ground', 'assets/coral.png');
 	 this.load.image('obstacle1', 'assets/shipwreck1.png' );
 	 this.load.image('enemy1', 'assets/octup1.png');
@@ -58,8 +58,8 @@ create()
 	 cursors = this.input.keyboard.createCursorKeys();
 
 	//  Setting the camera and physics bounds
-		this.cameras.main.setBounds(0, 0, 2400 , 650);
-		this.physics.world.setBounds(0, 0, 2400 , 650);
+	this.cameras.main.setBounds(0, 0, 2400 , 650);
+	this.physics.world.setBounds(0, 0, 2400 , 650);
 
 	//camera setting for Player
 
@@ -94,7 +94,7 @@ create()
 	//creating groups for enemies
 
 	  group.create(200, 300, 'enemy2').setVelocityX(280);
-	  //group.create(350, 300, 'enemy1').setGravity(0, 120);
+	  group.create(350, 300, 'enemy2').setGravity(2, 120);
 	  group.create(1300, 300, 'enemy2').setGravity(0, -120);
 	  group.create(1500, 300, 'enemy2').setGravity(0, -180);
 	  group.create(550, 300, 'enemy1').setGravity(0, -120);
@@ -137,8 +137,8 @@ create()
 		platforms.create(1500, 580, 'rock2');
 
 
-  
-    
+
+
 
 
 
@@ -150,7 +150,7 @@ function collectRuby1 (player, group)
 		this.physics.pause();
 
 scoreText.setText('Score: '+score);
- 
+
 	 //gameText = this.add.text(16, 16, 'GAME OVER',{fontSize:'80', fill:'#fffff'});
 	 gameText = this.add.text(100, 150, 'GAME OVER', { fontSize: '100px', fill: '#FF0000', backgroundColor: '#000000' });
 	 var bg = this.add.image(150, 200, 'playbutton');
@@ -160,14 +160,14 @@ scoreText.setText('Score: '+score);
         bg.setInteractive()
 		bg.on('pointerdown',startGameplay)
       bg.setScrollFactor(0);
-	  
+			score = 0;
+
 	 function startGameplay() {
-	game.scene.stop('Level1'); 
-    game.scene.start('startscreen');
-	score.destroy();
-   
+	game.scene.stop('Level1');
+	game.scene.start('Level1');
+    score = 0;
 }
- 
+
    gameText.setScrollFactor(0);
 
 }
@@ -185,31 +185,29 @@ scoreText.setText('Score: '+score);
      score += 5;
 
     scoreText.setText('Score: '+score);
- 
+
 
 	 //this.add.text(800, 16, 'Score:'+ score, { fontSize: '32px', fill: '#ffffff' });
 
    if (score === 125)
    {
       gameText = this.add.text(150, 150, 'Mission Complete!', { fontSize: '55px', fill: '#F00000', backgroundColor: '#ffffff' });
-    
+   gameText.setScrollFactor(0);
 	 this.physics.pause();
-	   		restartLevel();
 
-	   
-	 gameText.setScrollFactor(0);
 	 var bg = this.add.image(200, 145, 'playbutton');
-	  var container = this.add.container(200, 145, [ bg]);
-       bg.setInteractive()
-          bg.on('pointerdown',startGameplay)
-            bg.setScrollFactor(0);
-	 
-	
+	 gameOver = true;
+    var container = this.add.container(250, 160, [ bg]);
+		 bg.setInteractive()
+		bg.on('pointerdown',startGameplay)
+      bg.setScrollFactor(0);
+
+    score = 0;
+
    }
-   
- 
+
  function startGameplay() {
-	game.scene.restart('Level1'); 
+	game.scene.stop('Level1');
 	 game.scene.start('startscreen');
 
 	 }
@@ -251,10 +249,10 @@ update ()
         player.setVelocityY(500);
     }
     highScoreText.text = 'High Score: ' + localStorage.getItem("highscore"); {
-        if (score > localStorage.getItem("highscore")) { 
+        if (score > localStorage.getItem("highscore")) {
             localStorage.setItem("highscore", score);
         }
     }
 
     }
-}	
+}
