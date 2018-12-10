@@ -36,10 +36,14 @@ preload()
 	 this.load.image('rock2', 'assets/rocklayer2.png');
 	 this.load.image('float', 'assets/float.png');
 	 this.load.image('reefrock', 'assets/reefrock.png');
-	 this.load.image('ship2', 'assets/shipwreck2.png');
+	 this.load.image('ship2', 'assets/shipwreck1.png');
 	 this.load.image('playbutton', 'assets/playagain.png');
+	 this.load.audio('champion', 'sound/applause-01.mp3');
+	 this.load.audio('rubytouch', 'sound/water-droplet-2.mp3');
+	 this.load.audio('enemysound', 'sound/ice-hit-ground-01.mp3');
+}
 
-	}
+
 
 create()
 	{
@@ -47,15 +51,18 @@ create()
 	 //background image
 	this.add.sprite(0,0, 'ocean').setOrigin(0,0);
 
+	//adding sound for the game
+	var music = this.sound.add('champion');
+	var music = this.sound.add('rubytouch');
+	var music = this.sound.add('enemysound');
 
 	//Player
-
 	player = this.physics.add.sprite(100, 700, 'player');
 
 	player.setCollideWorldBounds(true);
 
-
-	 cursors = this.input.keyboard.createCursorKeys();
+  //cursors
+	cursors = this.input.keyboard.createCursorKeys();
 
 	//  Setting the camera and physics bounds
 	this.cameras.main.setBounds(0, 0, 2400 , 650);
@@ -63,7 +70,7 @@ create()
 
 	//camera setting for Player
 
-		this.cameras.main.startFollow(player);
+	this.cameras.main.startFollow(player);
 
 	//group for enemies
 
@@ -91,7 +98,7 @@ create()
 		});
 
 
-	//creating groups for enemies
+	//Adding enemies
 
 	  group.create(200, 300, 'enemy2').setVelocityX(280);
 	  group.create(350, 300, 'enemy2').setGravity(2, 120);
@@ -101,7 +108,7 @@ create()
 	  group.create(800, 300, 'enemy1').body.allowGravity = true;
 	  group.create(1700, 300, 'enemy1').setVelocityX(280);
 	  group.create(1200, 300, 'enemy1').body.allowGravity = true;
-	 group.create(2100, 500, 'fish').setGravity(20, -180);
+	  group.create(2100, 500, 'fish').setGravity(20, -180);
 
 
     //Adding rubies to the game
@@ -118,13 +125,12 @@ create()
     });
 
 
-    //platform for rubies
+  //platform for rubies
 	platforms = this.physics.add.staticGroup();
 	this.physics.add.collider(ruby, platforms);
 	this.physics.add.collider(player, platforms);
-	//this.physics.add.overlap(player, fish, null, this);
 	this.physics.add.overlap(player, ruby, collectRuby, null, this);
-	this.physics.add.overlap(player, group, collectRuby1, null, this);
+	this.physics.add.overlap(player, group, enemyCollision, null, this);
 
 	//Adding objects that act as platforms
 		platforms.create(350, 588, 'ground');
@@ -137,88 +143,87 @@ create()
 		platforms.create(1500, 580, 'rock2');
 
 
-
-
-
-
-
 //collison between player and enemies
-function collectRuby1 (player, group)
-{
-    group.disableBody(true, true);
-	 player.setTint(0xff0000);
-		this.physics.pause();
+	function enemyCollision (player, group)
+	{
+	    group.disableBody(true, true);
+		 		player.setTint(0xff0000);
+					this.physics.pause();
+						this.sound.play('enemysound');
+							scoreText.setText('Score: '+score);
 
-scoreText.setText('Score: '+score);
+		 //gameText = this.add.text(16, 16, 'GAME OVER',{fontSize:'80', fill:'#fffff'});
+		 gameText = this.add.text(100, 150, 'GAME OVER', { fontSize: '100px', fill: '#FF0000', backgroundColor: '#000000' });
+		 	var bg = this.add.image(150, 200, 'playbutton');
+		 		gameOver = true;
 
-	 //gameText = this.add.text(16, 16, 'GAME OVER',{fontSize:'80', fill:'#fffff'});
-	 gameText = this.add.text(100, 150, 'GAME OVER', { fontSize: '100px', fill: '#FF0000', backgroundColor: '#000000' });
-	 var bg = this.add.image(150, 200, 'playbutton');
-	 gameOver = true;
-    var container = this.add.container(250, 160, [ bg]);
+	    var container = this.add.container(250, 160, [ bg]);
 
-        bg.setInteractive()
-		bg.on('pointerdown',startGameplay)
-      bg.setScrollFactor(0);
-			score = 0;
+	    	bg.setInteractive()
+				bg.on('pointerdown',startGameplay)
+	      bg.setScrollFactor(0);
+				score = 0;
+
+		 function startGameplay() {
+		 game.scene.stop('Level1');
+		 game.scene.start('Level1');
+	   score = 0;
+	}
+
+	   gameText.setScrollFactor(0);
+
+	}
+
+
+			//Score
+		scoreText = this.add.text(70, 16, 'Score:' + score, { fontSize: '22px', fill: '#ffffff' });
+		scoreText.fixedToCamera = true;
+		scoreText.setScrollFactor(0);
+		//collect rubies
+		function collectRuby (player, ruby)
+	{
+	    ruby.disableBody(true, true);
+
+	     score += 5;
+
+	    scoreText.setText('Score: '+score);
+		 	this.sound.play('rubytouch');
+
+		 //this.add.text(800, 16, 'Score:'+ score, { fontSize: '32px', fill: '#ffffff' });
+
+	   if (score === 125)
+	   {
+	      gameText = this.add.text(150, 150, 'Mission Complete!', { fontSize: '55px', fill: '#F00000', backgroundColor: '#ffffff' });
+	   		gameText.setScrollFactor(0);
+		 		this.physics.pause();
+
+
+		 this.sound.play('champion');
+
+		 var bg = this.add.image(200, 145, 'playbutton');
+		 	gameOver = true;
+	   var container = this.add.container(250, 160, [ bg]);
+		  bg.setInteractive()
+		   bg.on('pointerdown',startGameplay)
+	      bg.setScrollFactor(0);
+
+	         score = 0;
+
+	   }
 
 	 function startGameplay() {
-	game.scene.stop('Level1');
-	game.scene.start('Level1');
-    score = 0;
-}
+		 game.scene.stop('Level1');
+		 	game.scene.start('startscreen');
 
-   gameText.setScrollFactor(0);
-
-}
-
-
-		//Score
-	scoreText = this.add.text(70, 16, 'Score:' + score, { fontSize: '22px', fill: '#ffffff' });
-	scoreText.fixedToCamera = true;
-	scoreText.setScrollFactor(0);
-	//collect rubies
-	function collectRuby (player, ruby)
-{
-    ruby.disableBody(true, true);
-
-     score += 5;
-
-    scoreText.setText('Score: '+score);
-
-
-	 //this.add.text(800, 16, 'Score:'+ score, { fontSize: '32px', fill: '#ffffff' });
-
-   if (score === 125)
-   {
-      gameText = this.add.text(150, 150, 'Mission Complete!', { fontSize: '55px', fill: '#F00000', backgroundColor: '#ffffff' });
-   gameText.setScrollFactor(0);
-	 this.physics.pause();
-
-	 var bg = this.add.image(200, 145, 'playbutton');
-	 gameOver = true;
-    var container = this.add.container(250, 160, [ bg]);
-		 bg.setInteractive()
-		bg.on('pointerdown',startGameplay)
-      bg.setScrollFactor(0);
-
-    score = 0;
-
-   }
-
- function startGameplay() {
-	game.scene.stop('Level1');
-	 game.scene.start('startscreen');
-
-	 }
-    //scoreText.setText('Score: ' + score);
-}
-//high score text
-	highScoreText = this.add.text(70, 40,
-			'High Score: ' + highscore,
-			{ font: "bold 20px Lato", fill: "#FFFFFF", align: "center" });
-	highScoreText.setScrollFactor(0);
-}
+		 }
+	    //scoreText.setText('Score: ' + score);
+	}
+	//high score text
+		highScoreText = this.add.text(70, 40,
+				'High Score: ' + highscore,
+				{ font: "bold 20px Lato", fill: "#FFFFFF", align: "center" });
+					highScoreText.setScrollFactor(0);
+					}
 
 
 
