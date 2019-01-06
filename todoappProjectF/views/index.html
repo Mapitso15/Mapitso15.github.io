@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css" type="text/css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!---<link rel="stylesheet" href="style.css" /> -->
+    <title>To do list</title>
+    <script>
+    var d = new Date("October 13, 2014 11:13:00");
+    document.getElementById("time").innerHTML = d;
+    </script>
+  </head>
+  <body onload="getData()">
+    <div class="container">
+      <div class="header">
+     <h2>My To Do List</h2>
+     <p class= "time" id="time"></p>
+
+     </div>
+    <!-- <h2> <u>Added Task</u> </h2>-->
+
+        <form>
+          <input type="text" id="todoInput" name="name" placeholder="add new task">
+          <button class="btn" onclick="addData();"> Add Task </button>
+          <p id = "tasks">
+
+          </p>
+
+
+        </form>
+
+        <button class="btn" onclick="updateDate();">Update</button>
+        <button class="btn" onclick="deleteAllData();getData(); "> Remove All </button>
+
+
+  	</div>
+
+    <script>
+      //all tasks
+      function getData() {
+        fetch('http://localhost:3000/tasks')
+        .then(res => res.json())
+        .then(res => res.map(user => user))
+        .then(userNames => document.getElementById('tasks').innerHTML = userNames.map(task=>`<h3>${task.name}
+        <input onclick="taskDone('${task._id}', '${task.check}')" type='checkbox' ${task.check}>
+        <span class="deleteTask" onclick='deleteData("${task._id}"); getData()'><i class="fa fa-trash"></i></span></h3><hr>`).join(''));
+      }
+
+      /*const getTasks = () => {
+      return fetch ('http://localhost:3000/tasks')
+      .then (res => res.json())
+      .then (tasks => console.log(tasks))
+      }
+
+        //add tasks to list
+
+
+        const addTask = task => {
+        const options ={
+        method: 'POST',
+        body: JSON.stringify (post),
+        headers: new Headers({
+        'Content-Type': 'application/json'})
+        }
+        return fetch('http://localhost:3000/tasks', options)
+        .then (res => res.json())
+        .then (tasks => console.log(tasks))
+        }*/
+        //addtask
+        function addData() {
+          let myPost = {};
+          myPost.name = document.getElementById('todoInput').value;
+
+        let options = {
+          method: 'POST',
+          body: JSON.stringify(myPost),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
+
+        fetch('http://localhost:3000/tasks', options)
+          .then(res => res.json())
+          .then(res => console.log(res));
+
+        }
+
+//Task done
+    function taskDone(id, check) {
+      if(check == 'unchecked') {
+        updateData(id, 'checked')
+      }
+      else {
+        updateData(id, 'unchecked')
+      }
+    }
+
+        //delete Task
+        function deleteData(id) {
+          let myPost = {};
+          myPost._id = id;
+
+
+        let options = {
+          method: 'DELETE',
+          body: JSON.stringify(myPost),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
+
+        fetch('http://localhost:3000/tasks/:taskId', options)
+          .then(res => res.json())
+          .then(res => console.log(res));
+
+        }
+
+        //delete all Task
+        function deleteAllData() {
+        let options = {
+          method: 'DELETE'
+
+
+        };
+
+        fetch('http://localhost:3000/tasks', options)
+          .then(res => res.json())
+          .then(res => console.log(res));
+
+        }
+
+        function updateData() {
+          let myPost = {};
+          myPost.name = document.getElementById('todoInput').value;
+
+        let options = {
+          method: 'PUT',
+          body: JSON.stringify(myPost),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
+
+
+        fetch('http://localhost:3000/tasks/:taskId', options)
+          .then(res => res.json())
+          .then(res => console.log(res));
+
+        }
+
+    </script>
+
+    </body>
+     </html>
