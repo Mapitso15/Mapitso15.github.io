@@ -1,0 +1,84 @@
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link media="all" type="text/css" rel="stylesheet" href="game.css">
+
+
+</head>
+
+<body>
+
+
+<div class="wrapper">
+<div class="logo" id="logo"><img src="images/logo1.png"></div>
+    <!-- Navigation -->
+    <div class="topnav" id="myTopnav">
+  <a href="#" class="active">Home</a>
+  <a href="#">Storyline</a>
+  <a href="#">Game Instructions</a>
+ 
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+    <!-- Top Container -->
+    <section class="top-container">
+      <header class="gamearea">
+        <canvas id="myCanvas" ></canvas>
+      </header>
+      <div class="top-box top-box-a">
+        <h4>Main Character</h4>
+        <img src="assets/scubac1.png">
+     
+      </div>
+      <div class="top-box top-box-b">
+        <h4>Enemies</h4>
+        <img src="images/enemies.png">
+    
+      </div>
+    </section>
+
+    <!-- Boxes Section -->
+    <section class="boxes">
+      <div class="box">
+        <img src="images/ruby3.png">
+        <h3>Game Storyline</h3>
+        <p>Water Mission 2.0 is an adventure game, where a scuba diver has to collect 20 rubies while avoiding sea enemies like octopuses, seahorses and sharks. To complete the mission the scuba diver has to collect all 20 rubies. The player accumulates 5 points for each ruby collected. </p>
+
+      </div>
+      <div class="box">
+         <img src="images/navkey.png">
+        <h3>Game Instructions</h3>
+        <p>How to play?
+<br/>
+Use arrow keys (Up, Down, Left, Right) to control the player Player earns 5 points for each ruby.</p>
+
+      </div>   
+
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer>
+      <p>Water Mission 2.0</p>
+    </footer>
+
+  </div>
+  <!-- Wrapper Ends -->
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+</body>
+<html>
